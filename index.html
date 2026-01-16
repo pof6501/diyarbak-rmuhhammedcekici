@@ -152,16 +152,16 @@
             color: #7f8c8d;
         }
         
-        nav ul {
+        .desktop-nav ul {
             display: flex;
             list-style: none;
         }
         
-        nav ul li {
+        .desktop-nav ul li {
             margin-left: 25px;
         }
         
-        nav ul li a {
+        .desktop-nav ul li a {
             text-decoration: none;
             color: #2c3e50;
             font-weight: 600;
@@ -171,11 +171,11 @@
             padding: 5px 0;
         }
         
-        nav ul li a:hover {
+        .desktop-nav ul li a:hover {
             color: #e74c3c;
         }
         
-        nav ul li a::after {
+        .desktop-nav ul li a::after {
             content: '';
             position: absolute;
             width: 0;
@@ -186,7 +186,7 @@
             transition: width 0.3s;
         }
         
-        nav ul li a:hover::after {
+        .desktop-nav ul li a:hover::after {
             width: 100%;
         }
         
@@ -198,6 +198,76 @@
             color: #2c3e50;
             cursor: pointer;
             padding: 5px;
+            z-index: 1001;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: white;
+            padding: 100px 25px 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateX(-100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+        }
+        
+        .mobile-nav.active {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .mobile-nav ul {
+            flex-direction: column;
+            list-style: none;
+        }
+        
+        .mobile-nav ul li {
+            margin: 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .mobile-nav ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .mobile-nav ul li a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: block;
+            padding: 15px 0;
+            transition: color 0.3s;
+        }
+        
+        .mobile-nav ul li a:hover {
+            color: #e74c3c;
+        }
+        
+        .mobile-nav .mobile-contact {
+            padding: 20px 0;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+        }
+        
+        .mobile-nav .mobile-contact a {
+            display: block;
+            background: #e74c3c;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 10px;
         }
         
         /* Hero Section */
@@ -889,14 +959,22 @@
             font-size: 0.95rem;
         }
         
-        /* Responsive */
+        /* Responsive DÜZELTİLDİ - Artık mobilde çalışacak */
         @media (max-width: 1100px) {
             .header-contact {
                 display: none;
             }
         }
         
-        @media (max-width: 992px) {
+        @media (max-width: 1024px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
             .hero-content h1 {
                 font-size: 2.8rem;
             }
@@ -907,51 +985,6 @@
             
             .hero-content p {
                 font-size: 1.2rem;
-            }
-            
-            nav ul {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .mobile-nav {
-                position: fixed;
-                top: 90px;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                padding: 25px;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: all 0.3s ease;
-                z-index: 999;
-            }
-            
-            .mobile-nav.active {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            
-            .mobile-nav ul {
-                flex-direction: column;
-            }
-            
-            .mobile-nav ul li {
-                margin: 12px 0;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-            
-            .cta-button {
-                width: 100%;
-                text-align: center;
             }
             
             .section-title h2 {
@@ -1031,6 +1064,14 @@
             .emergency-contact p {
                 font-size: 1.1rem;
             }
+            
+            .logo-text {
+                font-size: 1.3rem;
+            }
+            
+            .logo-text span {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -1077,9 +1118,12 @@
                 <li><a href="#about">Hakkımızda</a></li>
                 <li><a href="#contact">İletişim</a></li>
             </ul>
-            <div style="padding: 20px; border-top: 1px solid #eee; margin-top: 20px;">
-                <a href="tel:05312427130" style="display: block; background: #e74c3c; color: white; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
+            <div class="mobile-contact">
+                <a href="tel:05312427130">
                     <i class="fas fa-phone"></i> 0531 242 71 30
+                </a>
+                <a href="https://wa.me/905312427130" target="_blank" style="background: #25D366; margin-top: 10px;">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
                 </a>
             </div>
         </nav>
